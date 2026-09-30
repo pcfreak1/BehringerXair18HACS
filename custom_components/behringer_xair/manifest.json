@@ -1,0 +1,12 @@
+{
+  "domain": "behringer_xair",
+  "name": "Behringer X Air",
+  "codeowners": ["@pcfreak1"],
+  "config_flow": true,
+  "documentation": "https://github.com/pcfreak1/BehringerXair18HACS",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/pcfreak1/BehringerXair18HACS/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

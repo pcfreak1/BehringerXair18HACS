@@ -1,0 +1,5 @@
+# Linux / Python 3.13. This plugin pins Home Assistant 2026.2.3.
+-c https://raw.githubusercontent.com/home-assistant/core/2026.2.3/homeassistant/package_constraints.txt
+pytest-homeassistant-custom-component==0.13.316
+python-osc==1.9.3
+ruff==0.16.9

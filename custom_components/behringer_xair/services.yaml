@@ -1,0 +1,20 @@
+recall_snapshot:
+  name: Recall snapshot
+  description: Recall one of the 64 snapshots stored in the mixer. This can change the entire mix.
+  fields:
+    config_entry_id:
+      name: Mixer
+      required: true
+      selector:
+        config_entry:
+          integration: behringer_xair
+    slot:
+      name: Snapshot slot
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          max: 64
+          step: 1
+          mode: box

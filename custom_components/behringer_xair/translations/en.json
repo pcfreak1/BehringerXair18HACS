@@ -1,0 +1,49 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to your X Air mixer",
+        "description": "Enter the IPv4 address or hostname of your XR18 or X18. Home Assistant must be able to reach the mixer over UDP.",
+        "data": {"host": "Host", "port": "UDP port", "name": "Name"}
+      },
+      "reconfigure": {
+        "title": "Change the mixer connection",
+        "description": "Update the address of this mixer. Existing entity IDs are preserved.",
+        "data": {"host": "Host", "port": "UDP port", "name": "Name"}
+      }
+    },
+    "error": {
+      "cannot_connect": "No valid response from the mixer. Check its address, network connection and UDP port (normally 10024).",
+      "unsupported_model": "This integration supports Behringer XR18 and X18 mixers.",
+      "unknown": "Unexpected error. See the Home Assistant logs."
+    },
+    "abort": {
+      "already_configured": "This mixer is already configured.",
+      "reconfigure_successful": "The mixer connection has been updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Mixer controls",
+        "description": "Enter one stored snapshot per line, for example 1=Speech or 2=Music. Valid slots are 1-64. Leave empty for no snapshot scenes. Names are local labels; create and save snapshots in X Air Edit first. Enabling bus sends adds 96 volume controls.",
+        "data": {"snapshots": "Snapshot slots and names", "include_sends": "Add channel-to-bus send levels"}
+      }
+    },
+    "error": {"invalid_snapshots": "Enter unique slots from 1 to 64, one per line, optionally followed by =Name (up to 80 characters)."}
+  },
+  "entity": {
+    "number": {"volume": {"name": "{channel} volume"}},
+    "switch": {"enabled": {"name": "{channel} enabled"}}
+  },
+  "services": {
+    "recall_snapshot": {
+      "name": "Recall snapshot",
+      "description": "Recall an internal mixer snapshot. This can change the entire mix. Empty slots may be ignored by the mixer.",
+      "fields": {
+        "config_entry_id": {"name": "Mixer", "description": "The configured mixer to control."},
+        "slot": {"name": "Snapshot slot", "description": "The stored snapshot slot, from 1 to 64."}
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbind met je X Air-mixer",
+        "description": "Vul het IPv4-adres of de hostnaam van je XR18 of X18 in. Home Assistant moet de mixer via UDP kunnen bereiken.",
+        "data": {"host": "Host", "port": "UDP-poort", "name": "Naam"}
+      },
+      "reconfigure": {
+        "title": "Mixerverbinding wijzigen",
+        "description": "Werk het adres van deze mixer bij. Bestaande entiteits-ID's blijven behouden.",
+        "data": {"host": "Host", "port": "UDP-poort", "name": "Naam"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Geen geldig antwoord van de mixer. Controleer het adres, de netwerkverbinding en de UDP-poort (normaal 10024).",
+      "unsupported_model": "Deze integratie ondersteunt Behringer XR18- en X18-mixers.",
+      "unknown": "Onverwachte fout. Bekijk de Home Assistant-logboeken."
+    },
+    "abort": {
+      "already_configured": "Deze mixer is al geconfigureerd.",
+      "reconfigure_successful": "De mixerverbinding is bijgewerkt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Mixerbediening",
+        "description": "Vul per regel een opgeslagen snapshot in, bijvoorbeeld 1=Spraak of 2=Muziek. Geldige nummers: 1-64. Laat leeg om geen snapshot-scènes aan te maken. De namen zijn lokale labels; maak en bewaar snapshots eerst in X Air Edit. Bus-sends voegen 96 volumeregelaars toe.",
+        "data": {"snapshots": "Snapshotnummers en namen", "include_sends": "Kanaal-naar-bus-volumes toevoegen"}
+      }
+    },
+    "error": {"invalid_snapshots": "Gebruik unieke nummers van 1 t/m 64, één per regel, eventueel gevolgd door =Naam (maximaal 80 tekens)."}
+  },
+  "entity": {
+    "number": {"volume": {"name": "{channel} volume"}},
+    "switch": {"enabled": {"name": "{channel} ingeschakeld"}}
+  },
+  "services": {
+    "recall_snapshot": {
+      "name": "Snapshot oproepen",
+      "description": "Roep een interne mixersnapshot op. Dit kan de hele mix wijzigen. Lege slots kunnen door de mixer worden genegeerd.",
+      "fields": {
+        "config_entry_id": {"name": "Mixer", "description": "De geconfigureerde mixer die je wilt bedienen."},
+        "slot": {"name": "Snapshotnummer", "description": "Het nummer van de opgeslagen snapshot, van 1 t/m 64."}
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# Lightweight transport tests also run on Windows, without Home Assistant.
+pytest>=8,<10
+pytest-asyncio>=1,<2
+python-osc==1.9.3
+ruff==0.16.9
